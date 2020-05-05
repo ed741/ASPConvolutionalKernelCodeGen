@@ -14,7 +14,7 @@ The instructions add, move, and sub define the predicate in/7 for the respective
 
 
 This will produce an output:
-'''
+```
 >clasp version 3.3.3
 >Reading from stdin
 >Solving...
@@ -35,7 +35,7 @@ This will produce an output:
 >Calls        : 1
 >Time         : 199.726s (Solving: 185.48s 1st Model: 4.10s Unsat: 122.36s)
 >CPU Time     : 196.203s
-'''
+```
 
 
 This can be interperated as such:
