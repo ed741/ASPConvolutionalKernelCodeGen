@@ -20,7 +20,4 @@ goal_in(0,1,1,a).
 goal_in(1,0,1,a).
 goal_in(1,1,1,a).
 
-
-
-
 moves(7).
