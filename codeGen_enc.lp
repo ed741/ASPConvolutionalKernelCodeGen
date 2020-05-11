@@ -5,7 +5,9 @@ dir(right).
 
 goal_reg(R) :- goal_in(_,_,_,R).
 init_tile(X,Y) :- goal_in(X,Y,_,_).
-in(AX,AY,C,R,AX,AY,0) :- init_tile(AX,AY), init_reg(R), init_count(C).
+in(AX,AY,C,R,AX,AY,0) :- init_tile(AX,AY),
+                         init_reg(R),
+                         init_count(C).
 
 1 { 
 	move(R,RR,D,T) : reg(R), reg(RR), dir(D);
@@ -14,10 +16,14 @@ in(AX,AY,C,R,AX,AY,0) :- init_tile(AX,AY), init_reg(R), init_count(C).
 	null(T) 
 	} 1 :- moves(M), T = 1..M.
 
-in(AX,AY,C,R,X,Y,T) :- move(R,RR,left ,T), in(AX,AY,C,RR,X+1,Y,T-1).
-in(AX,AY,C,R,X,Y,T) :- move(R,RR,up   ,T), in(AX,AY,C,RR,X,Y-1,T-1).
-in(AX,AY,C,R,X,Y,T) :- move(R,RR,right,T), in(AX,AY,C,RR,X-1,Y,T-1).
-in(AX,AY,C,R,X,Y,T) :- move(R,RR,down ,T), in(AX,AY,C,RR,X,Y+1,T-1).
+in(AX,AY,C,R,X,Y,T) :- move(R,RR,left ,T),
+                       in(AX,AY,C,RR,X+1,Y,T-1).
+in(AX,AY,C,R,X,Y,T) :- move(R,RR,up   ,T),
+                       in(AX,AY,C,RR,X,Y-1,T-1).
+in(AX,AY,C,R,X,Y,T) :- move(R,RR,right,T),
+                       in(AX,AY,C,RR,X-1,Y,T-1).
+in(AX,AY,C,R,X,Y,T) :- move(R,RR,down ,T),
+                       in(AX,AY,C,RR,X,Y+1,T-1).
 
 in(AX,AY,C,R,X,Y,T) :- add(R,RA,RB,T),
                        in(AX,AY,CA,RA,X,Y,T-1),
@@ -49,7 +55,9 @@ in(AX,AY,C,R,X,Y,T+1) :- in(AX,AY,C,R,X,Y,T),
                          not reset(R,T+1),
                          not moves(T).
 
-:- in(AX,AY,CA,R,X,Y,T), in(AX,AY,CB,R,X,Y,T), CA!=CB.
+:- in(AX,AY,CA,R,X,Y,T),
+   in(AX,AY,CB,R,X,Y,T),
+   CA!=CB.
 
 :- goal_in(AX,AY,C,R), moves(M),
    not in(AX,AY,C,R,0,0,M).
